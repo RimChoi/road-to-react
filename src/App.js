@@ -30,8 +30,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: list,
-    }
+      // ES6에서는 객체 프로퍼티 이름과 변수 이름이 같다면, 하나로 축약해 정의합니다.
+      list,
+    };
+    /**
+     * 이 함수는 클래스에 바인딩되어 있으므로 클래스 메서드입니다. 
+     * 따라서 onDismiss()가 아니라 this.onDismiss()로 접근합니다.
+     * this 객체는 클래스 인스턴스입니다.
+     */
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(id) {
+    // function isNotId(item) {
+    //   return item.objectID !== id;
+    // }
+
+    const isNotId = item => item.objectID !== id;
+    const updateList = this.state.list.filter(isNotId);
+    this.setState({ list: updateList });
   }
 
   render() {
@@ -47,6 +64,14 @@ class App extends Component {
             <span>{item.author}</span>
             <span>{item.num_comments}</span>
             <span>{item.points}</span>
+            <span>
+              <button
+                onClick={() => this.onDismiss(item.objectID)}
+                type="button"
+              >
+                dismiss  
+              </button>
+            </span>
           </div>  
         )}
       </div>
