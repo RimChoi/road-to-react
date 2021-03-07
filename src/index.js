@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ * HTML의 DOM 노드를 JSX로 바꿔 준다
+ * @param 화면에 표시할 JSX 
+ * @param 리액트 애플리케이션이 들어갈 HTML상의 위치
+ */
 ReactDOM.render(
   <React.StrictMode>
     <App />
